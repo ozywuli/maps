@@ -28,6 +28,8 @@ var map = L.mapbox.map('map', 'examples.map-i86nkdio', {
     zoomControl: false
 });
 
+map.scrollWheelZoom.disable();
+
 var placesLayer = L.mapbox.featureLayer(places)
     .addTo(map);
 
@@ -69,7 +71,8 @@ function setId(newId) {
 // If you were to do this for real, you would want to use
 // something like underscore's _.debounce function to prevent this
 // call from firing constantly.
-narrative.onscroll = function(e) {
+$(window).scroll(function() {
+    console.log(1);
     var narrativeHeight = narrative.offsetHeight;
     var newId = currentId;
     // Find the section that's currently scrolled-to.
@@ -81,4 +84,4 @@ narrative.onscroll = function(e) {
         }
     };
     setId(newId);
-};
+});
