@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+ul, li {
+  list-style: none;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+a {
+  color: teal;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:visited {
+  color: blueviolet;
+}
+
+.container {
+  margin: 30px 30px 60px 30px;
+}
+
+.page-title {
+  margin-bottom: 30px;
+}
+
+#toc {
+  margin-bottom: 30px;
+}
+
+.toc__link:visited {
+  color: teal;
+}
+
+.directory-section {
+  margin-bottom: 30px;
+}
+
+
+
+.directory-section__item {
+  list-style: square outside;
+}
