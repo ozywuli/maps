@@ -24,64 +24,147 @@ var places = { type: 'FeatureCollection', features: [
   properties: { id: "charing-cross" }, type: 'Feature' }
 ]};
 
+
+
+
+// initiate map with options
 var map = L.mapbox.map('map', 'examples.map-i86nkdio', {
-    zoomControl: false
+    zoomControl: true
 });
 
+// disable zoom wheel
 map.scrollWheelZoom.disable();
 
+// add markers to map
 var placesLayer = L.mapbox.featureLayer(places)
     .addTo(map);
 
+
+// declare all variables at top
+var $narrative;
+var $sections;
+var currentId;
+
+
 // Ahead of time, select the elements we'll need -
 // the narrative container and the individual sections
-var narrative = document.getElementById('narrative'),
-    sections = narrative.getElementsByTagName('section'),
-    currentId = '';
+$narrative = $('#narrative');
+$sections = $('#narrative section');
+currentId = '';
 
+
+
+
+// highlight marker and corresponding panel on click
+placesLayer.eachLayer(function(layer) {
+
+    layer.on('click', function() {
+        setId(this.feature.properties.id);
+
+        var $listItem = $('.active');
+
+
+
+        $('html, body').animate({
+            scrollTop: $listItem.offset().top - $('html, body').offset().top + $('html, body').scrollTop()
+        });
+
+        console.log($listItem.offset().top);
+        console.log($listItem.scrollTop());
+        console.log($('html, body').offset().top);
+        console.log($('html, body').scrollTop());
+
+
+    })
+
+});
+
+
+
+
+
+
+// highlight the first panel on page load
 setId('cover');
 
+
+
+// highlight panels
 function setId(newId) {
+
+
     // If the ID hasn't actually changed, don't do anything
-    if (newId === currentId) return;
+    if (newId === currentId) {
+        return;
+    }
+
     // Otherwise, iterate through layers, setting the current
     // marker to a different color and zooming to it.
     placesLayer.eachLayer(function(layer) {
+
+
         if (layer.feature.properties.id === newId) {
+
             map.setView(layer.getLatLng(), layer.feature.properties.zoom || 14);
             layer.setIcon(L.mapbox.marker.icon({
                 'marker-color': '#a8f'
             }));
+
         } else {
+
             layer.setIcon(L.mapbox.marker.icon({
                 'marker-color': '#404040'
             }));
+
         }
+
     });
+
     // highlight the current section
-    for (var i = 0; i < sections.length; i++) {
-        sections[i].className = sections[i].id === newId ? 'active' : '';
+    for (var i = 0; i < $sections.length; i++) {
+        $sections[i].className = $sections[i].id === newId ? 'active' : '';
     }
+
     // And then set the new id as the current one,
     // so that we know to do nothing at the beginning
     // of this function if it hasn't changed between calls
     currentId = newId;
-}
+
+} // end setId()
+
+
+
+
+console.log( $($sections) );
+
+console.log($sections[2].id);
+
 
 // If you were to do this for real, you would want to use
 // something like underscore's _.debounce function to prevent this
 // call from firing constantly.
 $(window).scroll(function() {
-    console.log(1);
-    var narrativeHeight = narrative.offsetHeight;
+
+
+    var narrativeHeight = $narrative.height();
     var newId = currentId;
+
     // Find the section that's currently scrolled-to.
     // We iterate backwards here so that we find the topmost one.
-    for (var i = sections.length - 1; i >= 0; i--) {
-        var rect = sections[i].getBoundingClientRect();
-        if (rect.top >= 0 && rect.top <= narrativeHeight) {
-            newId = sections[i].id;
+    for (var i = $sections.length - 1; i >= 0; i--) {
+
+
+        var rect = $($sections[i]).offset().top;
+
+        if ( rect >= $('html, body').scrollTop() ) {
+            newId = $sections[i].id;
         }
+
+
+
+
     };
+
     setId(newId);
-});
+
+}); // end window scroll
