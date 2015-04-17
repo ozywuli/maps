@@ -1,4 +1,4 @@
-$('document').ready(function() {
+$(function() {
 
 
 L.mapbox.accessToken = 'pk.eyJ1IjoiYW9zaWthIiwiYSI6IjQzRGIxeEkifQ.7OvmyBbXwwt9Qxjlh9Qd3w';
@@ -16,7 +16,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiYW9zaWthIiwiYSI6IjQzRGIxeEkifQ.7OvmyBbXwwt9Qx
 // initiate map with options
 var map = L.mapbox.map('map', 'examples.map-i86nkdio', {
     zoomControl: true
-}).setView([51.50110000, -0.12960000], 9);
+})
 
 // disable zoom wheel
 map.scrollWheelZoom.disable();
@@ -45,9 +45,6 @@ $.getJSON('data/data.geojson', function(data) {
 // add markers to map
 var placesLayer = L.mapbox.featureLayer(data)
     .addTo(map);
-
-
-console.log(placesLayer);
 
 
 
@@ -175,7 +172,7 @@ setTimeout(function(){
 
 
 
-}); // end ajax call
+}); // end geojson ajax call
 
 
 }); // end document ready

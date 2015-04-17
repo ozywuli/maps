@@ -1,0 +1,25 @@
+{
+  "name": "Journeys of Xuanzang",
+  "version": "0.0.0",
+  "homepage": "ozywuli.com",
+  "authors": [
+    "Ozy Wu-Li"
+  ],
+  "description": "An interactive map that tracks and describes the journeys of Xuanzang to",
+  "keywords": [
+    "xuanzang"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "handlebars": "~3.0.0",
+    "mapbox.js": "~2.1.8"
+  }
+}
