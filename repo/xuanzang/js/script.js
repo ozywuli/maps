@@ -38,12 +38,12 @@ currentId = '';
 
 
 
-
+// grab geojson
+$.getJSON('data/data.geojson', function(data) {
 
 
 // add markers to map
-var placesLayer = L.mapbox.featureLayer()
-    .loadURL('data/data.geojson')
+var placesLayer = L.mapbox.featureLayer(data)
     .addTo(map);
 
 
@@ -53,12 +53,8 @@ console.log(placesLayer);
 
 // highlight marker and corresponding panel on click
 
-$('document').ready(function() {
-
-
 placesLayer.eachLayer(function(layer) {
 
-console.log(1);
 
     layer.on('click', function() {
         setId(this.feature.properties.id);
@@ -80,7 +76,6 @@ console.log(1);
 
 });
 
-});
 
 
 
@@ -180,7 +175,7 @@ setTimeout(function(){
 
 
 
-
+}); // end ajax call
 
 
 }); // end document ready
