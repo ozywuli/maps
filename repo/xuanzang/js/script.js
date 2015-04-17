@@ -1,14 +1,28 @@
-$('document').ready(function() {
-
-
 L.mapbox.accessToken = 'pk.eyJ1IjoiYW9zaWthIiwiYSI6IjQzRGIxeEkifQ.7OvmyBbXwwt9Qxjlh9Qd3w';
 // In this case, we just hardcode data into the file. This could be dynamic.
 // The important part about this data is that the 'id' property matches
 // the HTML above - that's how we figure out how to link up the
 // map and the data.
-
-
-
+var places = { type: 'FeatureCollection', features: [
+{ geometry: { type: "Point", coordinates: [-0.12960000, 51.50110000] },
+  properties: { id: "cover", zoom: 9 }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-0.15591514, 51.51830379] },
+  properties: { id: "baker" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-0.07571203, 51.51424049] },
+  properties: { id: "aldgate" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-0.08533793, 51.50438536] },
+  properties: { id: "london-bridge" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [0.05991101, 51.48752939] },
+  properties: { id: "woolwich" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-0.18335806, 51.49439521] },
+  properties: { id: "gloucester" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-0.19684993, 51.5033856] },
+  properties: { id: "caulfield-gardens" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-0.10669358, 51.51433123] },
+  properties: { id: "telegraph" }, type: 'Feature' },
+{ geometry: { type: "Point", coordinates: [-0.12416858, 51.50779757] },
+  properties: { id: "charing-cross" }, type: 'Feature' }
+]};
 
 
 
@@ -16,12 +30,14 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiYW9zaWthIiwiYSI6IjQzRGIxeEkifQ.7OvmyBbXwwt9Qx
 // initiate map with options
 var map = L.mapbox.map('map', 'examples.map-i86nkdio', {
     zoomControl: true
-}).setView([51.50110000, -0.12960000], 9);
+});
 
 // disable zoom wheel
 map.scrollWheelZoom.disable();
 
-
+// add markers to map
+var placesLayer = L.mapbox.featureLayer(places)
+    .addTo(map);
 
 
 // declare all variables at top
@@ -39,26 +55,12 @@ currentId = '';
 
 
 
-
-
-// add markers to map
-var placesLayer = L.mapbox.featureLayer()
-    .loadURL('data/data.geojson')
-    .addTo(map);
-
-
-console.log(placesLayer);
-
-
-
 // highlight marker and corresponding panel on click
-
-$('document').ready(function() {
 
 
 placesLayer.eachLayer(function(layer) {
 
-console.log(1);
+
 
     layer.on('click', function() {
         setId(this.feature.properties.id);
@@ -79,10 +81,6 @@ console.log(1);
 
 
 });
-
-});
-
-
 
 
 
@@ -177,19 +175,6 @@ setTimeout(function(){
     setId(newId);
  }, 500);
 }); // end window scroll
-
-
-
-
-
-
-}); // end document ready
-
-
-
-
-
-
 
 
 
