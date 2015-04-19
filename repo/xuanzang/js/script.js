@@ -138,12 +138,27 @@ function setId(newId) {
 
 
 
-// If you were to do this for real, you would want to use
-// something like underscore's _.debounce function to prevent this
-// call from firing constantly.
-$(window).on('scroll', function() {
 
-setTimeout(function(){
+
+
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+
+
+// Prevent the pan scrolling event from firing constantly
+var panDebouncer = debounce(function() {
     var narrativeHeight = $narrative.height();
     var newId = currentId;
 
@@ -167,7 +182,14 @@ setTimeout(function(){
     };
 
     setId(newId);
- }, 500);
+}, 250);
+
+
+
+$(window).on('scroll', function() {
+
+    panDebouncer();
+
 }); // end window scroll
 
 

@@ -36,3 +36,12 @@ section.active {
   background:#fff;
   color:#404040;
   }
+
+
+
+
+.leaflet-control-zoom {
+  position: fixed;
+  right: 10px;
+  bottom: 30px;
+}
