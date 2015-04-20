@@ -22,8 +22,11 @@ var map = L.mapbox.map('map', 'examples.map-i86nkdio', {
 map.scrollWheelZoom.disable();
 
 
+var $map;
+var $topbar;
 
-
+$map = $('#map');
+$topbar = $('.topbar');
 
 // begin destinations ajax call
 $.getJSON("data/destinations.json", function(data) {
@@ -40,15 +43,19 @@ $('.sections').html(result);
 
 
 // declare all variables at top
+
 var $narrative;
 var $sections;
+
 var currentId;
 
 
 // Ahead of time, select the elements we'll need -
 // the narrative container and the individual sections
+
 $narrative = $('#narrative');
 $sections = $('#narrative section');
+
 currentId = '';
 
 
@@ -194,8 +201,6 @@ var panDebouncer = debounce(function() {
         var sections = $($sections[i]);
         var rect = sections.offset();
 
-        console.log(rect.top);
-
         if ( rect.top >= $('html, body').scrollTop() - 100 ) {
             newId = $sections[i].id;
         }
@@ -225,6 +230,30 @@ $(window).on('scroll', function() {
 }); // end getjson
 
 
+
+
+// Toggle info overlay
+var $infoToggle;
+var $overlay;
+var $closeInfo;
+
+$infoToggle = $('.js__info-open');
+$overlay = $('.info-overlay')
+$closeInfo = $('.js__info-close');
+
+$infoToggle.on('click', function(e) {
+    e.preventDefault();
+    $overlay.fadeIn();
+    $map.addClass('blur');
+    $topbar.addClass('blur');
+//    $narrative.addClass('blur');
+});
+$closeInfo.on('click', function(e) {
+    e.preventDefault()
+    $overlay.fadeOut();
+    $map.removeClass('blur');
+    $topbar.removeClass('blur');
+})
 
 
 }); // end document ready
