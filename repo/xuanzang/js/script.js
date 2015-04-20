@@ -22,9 +22,11 @@ var map = L.mapbox.map('map', 'examples.map-i86nkdio', {
 map.scrollWheelZoom.disable();
 
 
+var $body;
 var $map;
 var $topbar;
 
+$body = $('body');
 $map = $('#map');
 $topbar = $('.topbar');
 
@@ -201,7 +203,7 @@ var panDebouncer = debounce(function() {
         var sections = $($sections[i]);
         var rect = sections.offset();
 
-        if ( rect.top >= $('html, body').scrollTop() - 100 ) {
+        if ( rect.top >= $('html, body').scrollTop() ) {
             newId = $sections[i].id;
         }
 
@@ -243,6 +245,7 @@ $closeInfo = $('.js__info-close');
 
 $infoToggle.on('click', function(e) {
     e.preventDefault();
+    $body.css('overflow', 'hidden');
     $overlay.fadeIn();
     $map.addClass('blur');
     $topbar.addClass('blur');
@@ -250,6 +253,7 @@ $infoToggle.on('click', function(e) {
 });
 $closeInfo.on('click', function(e) {
     e.preventDefault()
+    $body.css('overflow', 'auto');
     $overlay.fadeOut();
     $map.removeClass('blur');
     $topbar.removeClass('blur');
