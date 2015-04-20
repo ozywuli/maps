@@ -24,6 +24,21 @@ map.scrollWheelZoom.disable();
 
 
 
+
+// begin destinations ajax call
+$.getJSON("data/destinations.json", function(data) {
+
+// handlebars rendering
+var template = $("#itemTemplate").html();
+var renderer = Handlebars.compile(template);
+
+var result = renderer(data);
+
+$('.sections').html(result);
+
+
+
+
 // declare all variables at top
 var $narrative;
 var $sections;
@@ -38,8 +53,12 @@ currentId = '';
 
 
 
+
+
+
 // grab geojson
 $.getJSON('data/data.geojson', function(data) {
+
 
 
 // add markers to map
@@ -121,7 +140,11 @@ function setId(newId) {
 
     // highlight the current section
     for (var i = 0; i < $sections.length; i++) {
-        $sections[i].className = $sections[i].id === newId ? 'active' : '';
+        if ( $sections[i].id === newId ) {
+            $($sections[i]).addClass('active');
+        } else {
+            $($sections[i]).removeClass('active');
+        }
     }
 
     // And then set the new id as the current one,
@@ -171,7 +194,7 @@ var panDebouncer = debounce(function() {
         var sections = $($sections[i]);
         var rect = sections.offset();
 
-
+        console.log(rect.top);
 
         if ( rect.top >= $('html, body').scrollTop() - 100 ) {
             newId = $sections[i].id;
@@ -182,7 +205,7 @@ var panDebouncer = debounce(function() {
     };
 
     setId(newId);
-}, 250);
+}, 150);
 
 
 
@@ -195,6 +218,13 @@ $(window).on('scroll', function() {
 
 
 }); // end geojson ajax call
+
+
+
+
+}); // end getjson
+
+
 
 
 }); // end document ready
