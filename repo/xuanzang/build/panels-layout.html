@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><title>Document</title><style>
+  .panel {
+    margin-bottom: 50px;
+  }
+</style></head><body><section id=cover class="cover active"><h2>The Journeys of Xuanzang</h2><small class="scroll quiet">Scroll &#x25BE;</small></section><div id=container></div><script type=text/x-handlebars-template id=itemTemplate>{{#each destinations}} <section id="" class="panel"> <h3 class="panel__title">{{title}}</h3> <img src="{{img}}" alt="" class="panel__img"> <p class="panel__des">{{description}}</p> </section> {{/each}}</script><script src=https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js></script><script>
+
+$(function() {
+
+
+$.getJSON("data/destinations.json", function(data) {
+
+
+
+var template = $("#itemTemplate").html();
+var renderer = Handlebars.compile(template);
+
+var result = renderer(data);
+
+$('#container').html(result);
+
+
+
+}); // end getjson
+
+
+$('#container').on('click', '.panel', function() {
+  console.log(1);
+})
+
+}); // document ready
+
+
+</script></body></html>
