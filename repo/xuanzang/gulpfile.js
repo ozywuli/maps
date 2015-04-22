@@ -6,7 +6,7 @@ var jshint = require('gulp-jshint');
 
 // JS hint task
 gulp.task('jshint', function() {
-  gulp.src('./js/*.js')
+  gulp.src('./src/js/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
@@ -16,7 +16,7 @@ var changed = require('gulp-changed');
 var imagemin = require('gulp-imagemin');
 
 gulp.task('imagemin', function() {
-  var imgSrc = './images/**/*',
+  var imgSrc = './src/images/**/*',
       imgDst = './build/images';
 
   gulp.src(imgSrc)
@@ -31,7 +31,7 @@ var minifyHTML = require('gulp-minify-html');
 
 // minify new or changed HTML pages
 gulp.task('htmlpage', function() {
-  var htmlSrc = '*.html',
+  var htmlSrc = './*.html',
       htmlDst = './build';
 
   gulp.src(htmlSrc)
@@ -48,7 +48,7 @@ var uglify = require('gulp-uglify');
 
 // JS concat, strip debugging and minify
 gulp.task('scripts', function() {
-  gulp.src('./js/*.js')
+  gulp.src('./src/js/*.js')
     .pipe(concat('script.js'))
     .pipe(stripDebug())
     .pipe(uglify())
@@ -57,8 +57,22 @@ gulp.task('scripts', function() {
 
 
 
+var compass = require('gulp-compass');
 
-gulp.task('default', ['imagemin', 'htmlpage', 'scripts'], function() {
+gulp.task('compass', function() {
+  gulp.src('./src/sass/*.scss')
+    .pipe(compass({
+      config_file: './config.rb',
+      css: 'src/css',
+      sass: 'src/sass'
+    }))
+    .pipe(gulp.dest('./build/css'));
+});
+
+
+
+
+gulp.task('default', ['imagemin', 'htmlpage', 'scripts', 'compass'], function() {
   // watch for HTML changes
   gulp.watch('*.html', function() {
     gulp.run('htmlpage');
