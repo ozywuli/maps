@@ -31,7 +31,7 @@ $map = $('#map');
 $topbar = $('.topbar');
 
 // begin destinations ajax call
-$.getJSON("data/destinations.json", function(data) {
+$.getJSON("src/data/destinations.json", function(data) {
 
 // handlebars rendering
 var template = $("#itemTemplate").html();
@@ -66,7 +66,7 @@ currentId = '';
 
 
 // grab geojson
-$.getJSON('data/data.geojson', function(data) {
+$.getJSON('src/data/data.geojson', function(data) {
 
 
 
