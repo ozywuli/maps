@@ -26,6 +26,13 @@ var $body;
 var $map;
 var $topbar;
 
+// declare all variables at top
+
+var $narrative;
+var $panels;
+
+var currentId;
+
 $body = $('body');
 $map = $('#map');
 $topbar = $('.topbar');
@@ -39,24 +46,19 @@ var renderer = Handlebars.compile(template);
 
 var result = renderer(data);
 
-$('.sections').html(result);
+$('.panels-container').html(result);
 
 
 
 
-// declare all variables at top
 
-var $narrative;
-var $sections;
-
-var currentId;
 
 
 // Ahead of time, select the elements we'll need -
 // the narrative container and the individual sections
 
-$narrative = $('#narrative');
-$sections = $('#narrative section');
+$narrative = $('.narrative');
+$panels = $('.panel');
 
 currentId = '';
 
@@ -148,11 +150,11 @@ function setId(newId) {
     });
 
     // highlight the current section
-    for (var i = 0; i < $sections.length; i++) {
-        if ( $sections[i].id === newId ) {
-            $($sections[i]).addClass('active');
+    for (var i = 0; i < $panels.length; i++) {
+        if ( $panels[i].id === newId ) {
+            $($panels[i]).addClass('active');
         } else {
-            $($sections[i]).removeClass('active');
+            $($panels[i]).removeClass('active');
         }
     }
 
@@ -198,13 +200,13 @@ var panDebouncer = debounce(function() {
 
     // Find the section that's currently scrolled-to.
     // We iterate backwards here so that we find the topmost one.
-    for (var i = $sections.length - 1; i >= 0; i--) {
+    for (var i = $panels.length - 1; i >= 0; i--) {
 
-        var sections = $($sections[i]);
+        var sections = $($panels[i]);
         var rect = sections.offset();
 
         if ( rect.top >= $('html, body').scrollTop() ) {
-            newId = $sections[i].id;
+            newId = $panels[i].id;
         }
 
 
@@ -229,9 +231,6 @@ $(window).on('scroll', function() {
 
 
 
-}); // end getjson
-
-
 
 
 // Toggle info overlay
@@ -246,10 +245,10 @@ $closeInfo = $('.js__info-close');
 $infoToggle.on('click', function(e) {
     e.preventDefault();
     $body.css('overflow', 'hidden');
-    $overlay.fadeIn();
+    $overlay.fadeIn(100);
     $map.addClass('blur');
     $topbar.addClass('blur');
-//    $narrative.addClass('blur');
+    $narrative.addClass('blur');
 });
 $closeInfo.on('click', function(e) {
     e.preventDefault()
@@ -257,7 +256,26 @@ $closeInfo.on('click', function(e) {
     $overlay.fadeOut();
     $map.removeClass('blur');
     $topbar.removeClass('blur');
+    $narrative.removeClass('blur');
 })
+
+
+
+
+
+
+
+
+
+
+
+}); // end getjson
+
+
+
+
+
+
 
 
 }); // end document ready
