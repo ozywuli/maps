@@ -10,16 +10,35 @@
 </head>
 <body>
 
-<div id='map'></div>
 
-<header class="topbar">
-  <nav class="topbar__nav">
-    <a href="/" class="topbar__title">Journeys of Xuanzang</a>
-    <a href="#" class="topbar__info-button js__info-open">
-      info
-    </a>
-  </nav>
-</header>
+
+
+  <div id='map'></div>
+
+  <header class="topbar">
+    <nav class="topbar__nav">
+      <a href="/" class="topbar__title">Journeys of Xuanzang</a>
+      <a href="#" class="topbar__info-button js__info-open">
+        info
+      </a>
+    </nav>
+  </header>
+
+
+  <article class="narrative">
+
+    <section id="cover" class="cover panel active">
+      <h2 class="cover__title">The Journeys of Xuanzang</h2>
+      <small class='scroll quiet'>Scroll &#x25BE;</small>
+    </section>
+
+    <div class='panels-container'></div>
+
+  </article>
+
+
+
+
 
 
 <div class="info-overlay">
@@ -36,16 +55,7 @@
 </div>
 
 
-<article class="narrative">
 
-  <section id="cover" class="cover panel active">
-    <h2 class="cover__title">The Journeys of Xuanzang</h2>
-    <small class='scroll quiet'>Scroll &#x25BE;</small>
-  </section>
-
-  <div class='panels-container'></div>
-
-</article>
 
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -58,7 +68,7 @@
 {{#each destinations}}
 <section id="{{id}}" class="panel">
   <h3 class="panel__title">{{title}}</h3>
-  <img src="{{image}}" alt="" class="panel__image">
+  <img src="{{img}}" alt="" class="panel__image">
   <p class="panel__des">{{description}}</p>
 </section>
 {{/each}}

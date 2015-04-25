@@ -230,7 +230,8 @@ $(window).on('scroll', function() {
 
 
 
-
+// var $container;
+// $container = $('.container');
 
 
 // Toggle info overlay
@@ -246,14 +247,17 @@ $infoToggle.on('click', function(e) {
     e.preventDefault();
     $body.css('overflow', 'hidden');
     $overlay.fadeIn(100);
+//    $container.addClass('blur');
     $map.addClass('blur');
     $topbar.addClass('blur');
     $narrative.addClass('blur');
 });
 $closeInfo.on('click', function(e) {
     e.preventDefault()
-    $body.css('overflow', 'auto');
-    $overlay.fadeOut();
+    $overlay.fadeOut(function() {
+            $body.css('overflow', 'auto');
+    });
+//    $container.removeClass('blur');
     $map.removeClass('blur');
     $topbar.removeClass('blur');
     $narrative.removeClass('blur');

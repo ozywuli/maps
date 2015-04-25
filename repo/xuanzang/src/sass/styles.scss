@@ -113,6 +113,10 @@ a {
   color: rgba(0, 0, 0, 0.5);
   @include transition(background 500ms);
   @include transition(color 500ms);
+
+  &__image {
+    width: 100%;
+  }
 }
 .panel.active {
   background:#fff;
