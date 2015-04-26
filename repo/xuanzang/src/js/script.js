@@ -72,9 +72,20 @@ $.getJSON('src/data/data.geojson', function(data) {
 
 
 
+
+
 // add markers to map
 var placesLayer = L.mapbox.featureLayer(data)
     .addTo(map);
+
+
+
+
+
+
+
+
+
 
 
 
@@ -106,9 +117,21 @@ placesLayer.eachLayer(function(layer) {
 
 
 
+/*
+placesLayer.on('layeradd', function(e) {
 
 
 
+    // marker/e.layer is the same as the layer returned from eachLayer
+    var marker = e.layer,
+        feature = marker.feature;
+
+        marker.setIcon(L.icon(feature.properties.icon));
+
+});
+
+
+*/
 
 
 
@@ -129,22 +152,27 @@ function setId(newId) {
 
     // Otherwise, iterate through layers, setting the current
     // marker to a different color and zooming to it.
+
+
+
+
+
+
     placesLayer.eachLayer(function(layer) {
+
+        feature = layer.feature;
 
 
         if (layer.feature.properties.id === newId) {
 
+            feature.properties.icon.iconUrl = 'src/images/pagoda-highlight.png';
             map.setView(layer.getLatLng(), layer.feature.properties.zoom || 14);
-            layer.setIcon(L.mapbox.marker.icon({
-                'marker-color': '#a8f'
-            }));
+            layer.setIcon(L.icon(feature.properties.icon));
 
         } else {
 
-            layer.setIcon(L.mapbox.marker.icon({
-                'marker-color': '#404040'
-            }));
-
+            feature.properties.icon.iconUrl = 'src/images/pagoda.png';
+            layer.setIcon(L.icon(feature.properties.icon));
         }
 
     });
