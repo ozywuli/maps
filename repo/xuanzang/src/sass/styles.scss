@@ -24,6 +24,9 @@ a {
   text-decoration: none;
 }
 
+
+
+
 #map {
   position: fixed;
   top:0;
@@ -89,8 +92,9 @@ a {
   max-width: 400px;
   font-size: 2rem;
 }
-.cover__title {
+.cover {
   text-align: center;
+  height: 600px;
 }
 
 
@@ -114,8 +118,12 @@ a {
   @include transition(background 500ms);
   @include transition(color 500ms);
 
+  &__title {
+    margin-bottom: 10px;
+  }
   &__image {
     width: 100%;
+    margin-bottom: 10px;
   }
 }
 .panel.active {

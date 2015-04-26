@@ -205,7 +205,7 @@ var panDebouncer = debounce(function() {
         var sections = $($panels[i]);
         var rect = sections.offset();
 
-        if ( rect.top >= $('html, body').scrollTop() ) {
+        if ( rect.top >= $(window).scrollTop() - 250 ) {
             newId = $panels[i].id;
         }
 
@@ -230,8 +230,7 @@ $(window).on('scroll', function() {
 
 
 
-// var $container;
-// $container = $('.container');
+
 
 
 // Toggle info overlay
@@ -247,17 +246,14 @@ $infoToggle.on('click', function(e) {
     e.preventDefault();
     $body.css('overflow', 'hidden');
     $overlay.fadeIn(100);
-//    $container.addClass('blur');
     $map.addClass('blur');
     $topbar.addClass('blur');
     $narrative.addClass('blur');
 });
 $closeInfo.on('click', function(e) {
     e.preventDefault()
-    $overlay.fadeOut(function() {
-            $body.css('overflow', 'auto');
-    });
-//    $container.removeClass('blur');
+    $body.css('overflow', 'auto');
+    $overlay.fadeOut();
     $map.removeClass('blur');
     $topbar.removeClass('blur');
     $narrative.removeClass('blur');
