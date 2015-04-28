@@ -15,7 +15,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiYW9zaWthIiwiYSI6IjQzRGIxeEkifQ.7OvmyBbXwwt9Qx
 
 // initiate map with options
 var map = L.mapbox.map('map', 'examples.map-i86nkdio', {
-    zoomControl: true
+    zoomControl: false
 })
 
 // disable zoom wheel
@@ -72,7 +72,7 @@ $.getJSON('src/data/data.geojson', function(data) {
 
 
 
-
+L.control.zoomslider().addTo(map);
 
 // add markers to map
 var placesLayer = L.mapbox.featureLayer(data)
@@ -101,7 +101,7 @@ placesLayer.eachLayer(function(layer) {
 
 
         $('html, body').animate({
-            scrollTop: $listItem.offset().top - 100
+            scrollTop: $listItem.offset().top - 50
         });
 
 
