@@ -7,6 +7,8 @@
 @import "compass/reset";
 
 
+/* Begin Overrides */
+
 html, body {
   width: 100%;
   height: 100%;
@@ -24,13 +26,24 @@ a {
   text-decoration: none;
 }
 
+/* End Overrides */
 
 
+/* .container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+*/
+
+
+/* Begin Map Styles*/
 
 #map {
   position: fixed;
-  top:0;
-  bottom:0;
+  top: 0;
+  bottom: 0;
   width:100%;
 }
 
@@ -43,6 +56,22 @@ a {
 }
 
 
+.leaflet-control-zoom {
+  position: fixed;
+  right: 10px;
+  bottom: 30px;
+}
+
+
+/* End Map Styles */
+
+
+
+
+
+
+
+/* Begin Top Bar */
 
 .topbar {
   position: fixed;
@@ -50,58 +79,98 @@ a {
   left:0;
   width: 100%;
   background: rgba(0, 0, 0, 0.8);
-  text-align: center;
   font-size: 1.5rem;
   z-index: 9000;
-}
-.topbar a {
-  color: #FFF;
-  padding: 10px;
-}
-.topbar__info-button {
-  float: right;
+
+
+  a {
+    color: #FFF;
+    padding: 10px;
+  }
+
+  &__title {
+    float: left;
+  }
+
+  &__info-button {
+    float: right;
+  }
+
+
 }
 
+/* End Top Bar */
+
+
+
+/* Begin Info Overlay */
 
 .info-overlay {
   display: none;
   position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
+
   overflow-y: scroll;
   color: #FFF;
   font-size: 2rem;
   z-index: 10000;
+
+  &__close {
+    position: fixed;
+    top: 10px;
+    right: 25px;
+    color: #FFF;
+    font-size: 1.5rem;
+  }
+
+
 }
+
+
 .blur {
   filter: blur(2px);
 }
-.info-overlay__close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-.background {
+.background-info {
   max-width: 600px;
   margin: 0 auto;
+  padding: 20px;
+
+  p {
+    margin-bottom: 20px;
+  }
+
 }
 
+/* End Info Overlays*/
 
 
 
+
+
+/* Begin Panels */
 .narrative {
-  position: absolute;
+  position: relative;
   top: 45px;
   right:0;
   bottom: 0;
   left: 10px;
   max-width: 400px;
+  height: 100%;
   font-size: 2rem;
 }
 .cover {
   text-align: center;
   height: 600px;
+
+  &__title {
+    margin-bottom: 20px;
+  }
 }
 
 
@@ -122,6 +191,7 @@ a {
   border-radius: 3px;
   padding: 20px;
   color: rgba(0, 0, 0, 0.5);
+  @include box-shadow(0 1px 4px 1px #444);
   @include transition(background 500ms);
   @include transition(color 500ms);
 
@@ -133,20 +203,14 @@ a {
     margin-bottom: 10px;
   }
 }
+
 .panel.active {
   background:#fff;
   color:#404040;
 }
 
 
-.panel__img {
-  width: 100%;
-}
+/* End Panels*/
 
 
 
-.leaflet-control-zoom {
-  position: fixed;
-  right: 10px;
-  bottom: 30px;
-}

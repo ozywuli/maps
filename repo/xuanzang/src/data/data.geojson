@@ -1,9 +1,9 @@
 [
     {
-        "geometry": { "type": "Point", "coordinates": [-0.12960000, 51.50110000] },
+        "geometry": { "type": "Point", "coordinates": [111.42333984375, 32.6578757369553] },
         "properties": {
             "id": "cover",
-            "zoom": 9,
+            "zoom": 6,
             "icon": {
                 "iconUrl": "src/images/pagoda.png",
                 "iconSize": [32, 37],
@@ -15,7 +15,7 @@
         "type": "Feature"
     },
     {
-        "geometry": { "type": "Point", "coordinates": [-0.15591514, 51.51830379] },
+        "geometry": { "type": "Point", "coordinates": [111.22333984375, 32.2578757369553] },
         "properties": {
             "id": "baker",
             "icon": {
@@ -29,7 +29,7 @@
         "type": "Feature"
     },
     {
-        "geometry": { "type": "Point", "coordinates": [-0.07571203, 51.51424049] },
+        "geometry": { "type": "Point", "coordinates": [111.62333984375, 32.8578757369553] },
         "properties": {
             "id": "aldgate",
             "icon": {
@@ -43,7 +43,7 @@
         "type": "Feature"
     },
     {
-        "geometry": { "type": "Point", "coordinates": [-0.08533793, 51.50438536] },
+        "geometry": { "type": "Point", "coordinates": [110.42333984375, 31.6578757369553] },
         "properties": {
             "id": "london-bridge",
             "icon": {
@@ -57,7 +57,7 @@
         "type": "Feature"
     },
     {
-        "geometry": { "type": "Point", "coordinates": [0.05991101, 51.48752939] },
+        "geometry": { "type": "Point", "coordinates": [109.42333984375, 31.6578757369553] },
         "properties": {
             "id": "woolwich",
             "icon": {
@@ -71,7 +71,7 @@
         "type": "Feature"
     },
     {
-        "geometry": { "type": "Point", "coordinates": [-0.18335806, 51.49439521] },
+        "geometry": { "type": "Point", "coordinates": [111.42333984375, 33.6578757369553] },
         "properties": {
             "id": "gloucester",
             "icon": {
@@ -85,7 +85,7 @@
         "type": "Feature"
     },
     {
-        "geometry": { "type": "Point", "coordinates": [-0.19684993, 51.5033856] },
+        "geometry": { "type": "Point", "coordinates": [111.52333984375, 32.7578757369553] },
         "properties": {
             "id": "caulfield-gardens",
             "icon": {
@@ -98,7 +98,7 @@
         },
         "type": "Feature" },
     {
-        "geometry": { "type": "Point", "coordinates": [-0.10669358, 51.51433123] },
+        "geometry": { "type": "Point", "coordinates": [111.49333984375, 32.1578757369553] },
         "properties": {
             "id": "telegraph",
             "icon": {
@@ -112,7 +112,7 @@
         "type": "Feature"
     },
     {
-        "geometry": { "type": "Point", "coordinates": [-0.12416858, 51.50779757] },
+        "geometry": { "type": "Point", "coordinates": [110.42333984375, 32.0578757369553] },
         "properties": {
             "id": "charing-cross",
             "icon": {

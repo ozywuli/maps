@@ -2,12 +2,6 @@ $(function() {
 
 
 L.mapbox.accessToken = 'pk.eyJ1IjoiYW9zaWthIiwiYSI6IjQzRGIxeEkifQ.7OvmyBbXwwt9Qxjlh9Qd3w';
-// In this case, we just hardcode data into the file. This could be dynamic.
-// The important part about this data is that the 'id' property matches
-// the HTML above - that's how we figure out how to link up the
-// map and the data.
-
-
 
 
 
@@ -165,8 +159,11 @@ function setId(newId) {
 
         if (layer.feature.properties.id === newId) {
 
+            console.log(layer.getLatLng());
+
             feature.properties.icon.iconUrl = 'src/images/pagoda-highlight.png';
             map.setView(layer.getLatLng(), layer.feature.properties.zoom || 14);
+//            map.setView([32.6578757369553, 111.42333984375], layer.feature.properties.zoom || 14)
             layer.setIcon(L.icon(feature.properties.icon));
 
         } else {
@@ -273,7 +270,7 @@ $closeInfo = $('.js__info-close');
 $infoToggle.on('click', function(e) {
     e.preventDefault();
     $body.css('overflow', 'hidden');
-    $overlay.fadeIn(100);
+    $overlay.fadeIn(0);
     $map.addClass('blur');
     $topbar.addClass('blur');
     $narrative.addClass('blur');
@@ -281,7 +278,7 @@ $infoToggle.on('click', function(e) {
 $closeInfo.on('click', function(e) {
     e.preventDefault()
     $body.css('overflow', 'auto');
-    $overlay.fadeOut();
+    $overlay.fadeOut(0);
     $map.removeClass('blur');
     $topbar.removeClass('blur');
     $narrative.removeClass('blur');
