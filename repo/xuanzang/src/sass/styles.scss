@@ -169,7 +169,11 @@ a {
   height: 600px;
 
   &__title {
-    margin-bottom: 20px;
+    padding: 20px;
+  }
+  &__img {
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
 
@@ -189,18 +193,24 @@ a {
   background: rgba(255, 255, 255, 0.5);
   margin-bottom: 20px;
   border-radius: 3px;
-  padding: 20px;
+
   color: rgba(0, 0, 0, 0.5);
-  @include box-shadow(0 1px 4px 1px #444);
+  @include box-shadow(0 1px 4px 1px #888);
   @include transition(background 500ms);
   @include transition(color 500ms);
 
   &__title {
-    margin-bottom: 10px;
+    padding: 10px;
   }
-  &__image {
+  &__img {
     width: 100%;
     margin-bottom: 10px;
+  }
+  &__p {
+    padding: 0 20px 20px 20px;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    color: #333;
   }
 }
 
