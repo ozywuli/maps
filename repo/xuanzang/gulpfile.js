@@ -17,7 +17,7 @@ var imagemin = require('gulp-imagemin');
 
 gulp.task('imagemin', function() {
   var imgSrc = 'src/images/**/*',
-      imgDst = 'build/images';
+      imgDst = 'build/src/images';
 
   gulp.src(imgSrc)
     .pipe(changed(imgDst))
@@ -52,7 +52,7 @@ gulp.task('scripts', function() {
     .pipe(concat('script.js'))
     .pipe(stripDebug())
     .pipe(uglify())
-    .pipe(gulp.dest('build/js/'));
+    .pipe(gulp.dest('build/src/js/'));
 });
 
 
@@ -66,8 +66,23 @@ gulp.task('compass', function() {
       css: 'src/css',
       sass: 'src/sass'
     }))
-    .pipe(gulp.dest('build/css'));
+    .pipe(gulp.dest('build/src/css'));
 });
+
+
+gulp.task('data', function() {
+
+  gulp.src('src/data/*')
+    .pipe(gulp.dest('build/src/data/'));
+
+});
+
+
+gulp.task('bower_components', function() {
+
+  gulp.src('bower_components/**/*')
+    .pipe(gulp.dest('build/bower_components/'));
+})
 
 
 
@@ -83,7 +98,7 @@ gulp.task('move', function(){
 });
 
 
-gulp.task('default', ['imagemin', 'htmlpage', 'scripts', 'compass', 'move'], function() {
+gulp.task('default', ['imagemin', 'htmlpage', 'scripts', 'compass', 'data', 'bower_components'], function() {
   // watch for HTML changes
   gulp.watch('*.html', function() {
     gulp.run('htmlpage');

@@ -12,6 +12,28 @@ var map = L.mapbox.map('map', 'examples.map-i86nkdio', {
     zoomControl: false
 })
 
+// Mobile map toggle
+
+
+$('.map-bar__toggle').on('click', function(e) {
+    e.preventDefault;
+
+
+
+    if ( !$('.container').hasClass('hide-des') ) {
+        $(this).html('Expand Description');
+        $('.container').addClass('hide-des');
+        $('.narrative').addClass('slide-down');
+        map.invalidateSize();
+    } else {
+        $(this).html('Expand Map');
+        $('.container').removeClass('hide-des');
+        map.invalidateSize();
+    }
+})
+
+
+
 // disable zoom wheel
 map.scrollWheelZoom.disable();
 
@@ -247,6 +269,7 @@ $(window).on('scroll', function() {
 
     panDebouncer();
 
+
 }); // end window scroll
 
 
@@ -283,6 +306,8 @@ $closeInfo.on('click', function(e) {
     $topbar.removeClass('blur');
     $narrative.removeClass('blur');
 })
+
+
 
 
 

@@ -7,6 +7,26 @@
 @import "compass/reset";
 
 
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+
+@mixin tablet {
+  @media all and (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+
+
+@mixin desktop {
+  @media all and (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+
+
 /* Begin Overrides */
 
 html, body {
@@ -29,13 +49,13 @@ a {
 /* End Overrides */
 
 
-/* .container {
+ .container {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: auto;
+
 }
-*/
+
 
 
 /* Begin Map Styles*/
@@ -45,6 +65,21 @@ a {
   top: 0;
   bottom: 0;
   width:100%;
+  height: 200px;
+  z-index: 1000;
+
+  @include tablet {
+    height: 100%;
+    z-index: 1;
+  }
+}
+
+.leaflet-control-container {
+  display: none;
+
+  @include tablet {
+    display: block;
+  }
 }
 
 
@@ -153,16 +188,81 @@ a {
 
 
 
+
+
+
+
+.map-bar {
+
+  position: fixed;
+  top: 200px;
+
+  right: 0;
+  left: 0;
+  font-size: 32px;
+  z-index: 1500;
+  text-align: center;
+
+
+  &__toggle {
+    display: block;
+    background: #00F;
+    padding: 10px 0;
+    font-size: 1.4rem;
+    color: #FFF;
+    line-height: 1;
+  }
+
+
+  @include tablet {
+    display: none;
+  }
+
+}
+
+
+
+
+
+
+
+
+.hide-des {
+
+  & #map {
+    height: 100%;
+  }
+
+  & .map-bar {
+    top: auto;
+    bottom: 0;
+  }
+
+  & .narrative {
+    display: none;
+  }
+
+}
+
+
+
+
 /* Begin Panels */
 .narrative {
   position: relative;
-  top: 45px;
-  right:0;
-  bottom: 0;
-  left: 10px;
-  max-width: 400px;
+  top: 238px;
+  left: 0;
   height: 100%;
   font-size: 2rem;
+  z-index: 1;
+
+ @include tablet {
+    top: 45px;
+    left: 10px;
+    max-width: 400px;
+    z-index: 1000;
+  }
+
 }
 .cover {
   text-align: center;
@@ -175,6 +275,7 @@ a {
     width: 100%;
     margin-bottom: 10px;
   }
+
 }
 
 
@@ -190,28 +291,41 @@ a {
 
 }
 .panel {
-  background: rgba(255, 255, 255, 0.5);
+  background: #FFF;
   margin-bottom: 20px;
-  border-radius: 3px;
+
 
   color: rgba(0, 0, 0, 0.5);
-  @include box-shadow(0 1px 4px 1px #888);
   @include transition(background 500ms);
   @include transition(color 500ms);
 
+
   &__title {
-    padding: 10px;
+    padding: 10px 20px;
   }
   &__img {
     width: 100%;
     margin-bottom: 10px;
   }
   &__p {
-    padding: 0 20px 20px 20px;
+    margin: 0 20px 20px 20px;
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 20px;
     font-size: 1.6rem;
     line-height: 2rem;
     color: #333;
   }
+
+
+
+  @include tablet {
+    background: rgba(255, 255, 255, 0.5);
+    @include box-shadow(0 1px 4px 1px #888);
+    border-radius: 3px;
+
+  }
+
+
 }
 
 .panel.active {
